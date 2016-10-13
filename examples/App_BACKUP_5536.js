@@ -31,8 +31,11 @@ const Example = React.createClass({
       popup: require('./demos/popup'),
       rendering: require('./demos/rendering'),
       customView: require('./demos/customView'),
+<<<<<<< HEAD
       timeslots: require('./demos/timeslots'),
+=======
       dnd: require('./demos/dnd/dnd')
+>>>>>>> pr/1
     }[selected];
 
     return (

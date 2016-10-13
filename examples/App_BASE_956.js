@@ -31,8 +31,6 @@ const Example = React.createClass({
       popup: require('./demos/popup'),
       rendering: require('./demos/rendering'),
       customView: require('./demos/customView'),
-      timeslots: require('./demos/timeslots'),
-      dnd: require('./demos/dnd/dnd')
     }[selected];
 
     return (
@@ -71,9 +69,6 @@ const Example = React.createClass({
               <li className={cn({active: selected === 'popup' })}>
                 <a href='#' onClick={this.select.bind(null, 'popup')}>Popup</a>
               </li>
-              <li className={cn({active: selected === 'timeslots' })}>
-                <a href='#' onClick={this.select.bind(null, 'timeslots')}>Timeslots</a>
-              </li>
               <li className={cn({active: selected === 'rendering' })}>
                 <a href='#' onClick={this.select.bind(null, 'rendering')}>Custom rendering</a>
               </li>
@@ -82,9 +77,6 @@ const Example = React.createClass({
                 <a href='#' onClick={this.select.bind(null, 'customView')}>Custom View</a>
               </li>
               */}
-              <li className={cn({active: selected === 'dnd' })}>
-                <a href='#' onClick={this.select.bind(null, 'dnd')}>Drag and Drop</a>
-              </li>
             </ul>
           </aside>
           <div className='example'>
