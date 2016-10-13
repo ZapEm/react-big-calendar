@@ -183,11 +183,14 @@ let MonthView = React.createClass({
 
     return (
     <BackgroundCells
-      slots={7}
-      onSelectSlot={onSelectSlot}
+      backgroundWrapperComponent={this.props.components.backgroundWrapper}
       container={() => findDOMNode(this)}
       selectable={this.props.selectable}
+      slots={7}
+      values={row}
+      type="Day"
       ref={r => this._bgRows[idx] = r}
+      onSelectSlot={onSelectSlot}
     />
     )
   },
@@ -199,7 +202,8 @@ let MonthView = React.createClass({
       <EventRow
         {...this.props}
         eventComponent={this.props.components.event}
-        onSelect={this.handleSelectEvent}
+        onSelect={this.handleSelectEvent} // conflict: onSelect={this._selectEvent}
+        eventWrapperComponent={this.props.components.eventWrapper}
         key={idx}
         segments={segments}
         start={first}
@@ -217,7 +221,8 @@ let MonthView = React.createClass({
       <EventEndingRow
         {...this.props}
         eventComponent={this.props.components.event}
-        onSelect={this.handleSelectEvent}
+        onSelect={this.handleSelectEvent} // conflict: onSelect={this._selectEvent}
+        eventWrapperComponent={this.props.components.eventWrapper}
         onShowMore={onClick}
         key={'last_row_' + weekIdx}
         segments={extraSegments}
@@ -293,11 +298,12 @@ let MonthView = React.createClass({
         <Popup
           {...this.props}
           eventComponent={components.event}
+          eventWrapperComponent={components.eventWrapper}
           position={overlay.position}
           events={overlay.events}
           slotStart={overlay.date}
           slotEnd={overlay.end}
-          onSelect={this.handleSelectEvent}
+          onSelect={this.handleSelectEvent} // conflict: onSelect={this._selectEvent}
         />
       </Overlay>
     )
@@ -323,7 +329,7 @@ let MonthView = React.createClass({
     notify(this.props.onNavigate, [navigate.DATE, date])
   },
 
-  handleSelectEvent(...args){
+  handleSelectEvent(...args){         // conflict: _selectEvent
     //cancel any pending selections so only the event click goes through.
     this.clearSelection()
 
