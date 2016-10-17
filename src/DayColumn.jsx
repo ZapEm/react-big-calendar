@@ -39,6 +39,14 @@ function overlaps(event, events, { startAccessor, endAccessor }, last) {
   return offset
 }
 
+function* newID(){
+  let id=1
+  while (id !== 0){
+    yield id++
+  }
+  throw new Error('newID*() is out of IDs... yeah.')
+}
+
 let DaySlot = React.createClass({
 
   propTypes: {
@@ -158,7 +166,7 @@ let DaySlot = React.createClass({
       return (
         <EventWrapper event={event}>
           <div 
-            key={'evt_' + idx}
+            key={'evt_' + idx + newID()}
             style={{...xStyle, ...style}}
             title={label + ': ' + title }
             onClick={this._select.bind(null, event)}
