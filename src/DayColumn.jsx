@@ -13,6 +13,8 @@ import { accessor as get } from './utils/accessors';
 
 import TimeColumn from './TimeColumn'
 
+import uuid from 'uuid';
+
 function snapToSlot(date, step){
   var roundTo = 1000 * 60 * step;
   return new Date(Math.floor(date.getTime() / roundTo) * roundTo)
@@ -137,14 +139,6 @@ let DaySlot = React.createClass({
 
     events.sort((a, b) => +get(a, startAccessor) - +get(b, startAccessor))
 
-    function* newID(){
-      let id=1
-      while (id !== 0){
-        yield id++
-      }
-      throw new Error('newID*() is out of IDs... yeah.')
-    }
-
     return events.map((event, idx) => {
       let start = get(event, startAccessor)
       let end = get(event, endAccessor)
@@ -166,7 +160,7 @@ let DaySlot = React.createClass({
       return (
         <EventWrapper event={event}>
           <div 
-            key={'evt_' + idx + newID()}
+            key={'evt_' + idx + uuid.v1()}
             style={{...xStyle, ...style}}
             title={label + ': ' + title }
             onClick={this._select.bind(null, event)}
