@@ -159,7 +159,6 @@ let DaySlot = React.createClass({
       return (
         <EventWrapper event={event}>
           <div 
-            key={'evt_' + idx}
             style={{...xStyle, ...style}}
             title={label + ': ' + title }
             onClick={this._select.bind(null, event)}
@@ -168,10 +167,10 @@ let DaySlot = React.createClass({
               'rbc-event-overlaps': lastLeftOffset !== 0
             })}
           >
-            <div className='rbc-event-label' key={'evt_lbl_' + idx}>{label}</div>
-            <div className='rbc-event-content' key={'evt_cnt_' + idx}>
+            <div className='rbc-event-label'>{label}</div>
+            <div className='rbc-event-content'>
               { EventComponent
-                ? <EventComponent event={event} title={title} key={'evt_cmp_' + idx}/>
+                ? <EventComponent event={event} title={title}/>
                 : title
               }
             </div>
