@@ -39,14 +39,6 @@ function overlaps(event, events, { startAccessor, endAccessor }, last) {
   return offset
 }
 
-function* newID(){
-  let id=1
-  while (id !== 0){
-    yield id++
-  }
-  throw new Error('newID*() is out of IDs... yeah.')
-}
-
 let DaySlot = React.createClass({
 
   propTypes: {
@@ -144,6 +136,14 @@ let DaySlot = React.createClass({
       , lastLeftOffset = 0;
 
     events.sort((a, b) => +get(a, startAccessor) - +get(b, startAccessor))
+
+    function* newID(){
+      let id=1
+      while (id !== 0){
+        yield id++
+      }
+      throw new Error('newID*() is out of IDs... yeah.')
+    }
 
     return events.map((event, idx) => {
       let start = get(event, startAccessor)
